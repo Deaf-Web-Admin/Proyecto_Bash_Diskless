@@ -105,18 +105,18 @@ else
 	echo "nameserver 1.1.1.1">>/etc/resolv.conf
 	cat /etc/resolv.conf 
 	pause
+	echo "Cambiando A Directorio ipxe/src"
+	cd ipxe/src
 	echo "Creando Directorios PXE"
 	mkdir -pv /pxeboot/{config,firmware}
 	echo "Borrando Boot Config"
-	rm -f ipxe/src/bootconfig.ipxe
+	rm -f bootconfig.ipxe
 	echo "Creando Boot Config"
-	echo '#!ipxe'>>ipxe/src/bootconfig.ipxe
-	echo "dhcp">>ipxe/src/bootconfig.ipxe
-	echo "chain tftp://$2/config/boot.ipxe">>ipxe/src/bootconfig.ipxe
-	cat /ipxe/src/bootconfig.ipxe
+	echo '#!ipxe'>>bootconfig.ipxe
+	echo "dhcp">>bootconfig.ipxe
+	echo "chain tftp://$2/config/boot.ipxe">>bootconfig.ipxe
+	cat bootconfig.ipxe
 	pause
-	echo "Cambiando A Directorio ipxe/src"
-	cd ipxe/src
 	echo "Compilando...(tardara)"
 	make bin/ipxe.pxe bin-x86_64-efi/ipxe.efi EMBED=bootconfig.ipxe
 	echo "Copiando archivos iPXE hacia /pxeboot/firmware Directory"
@@ -170,8 +170,8 @@ else
 	echo '#!ipxe'>>/pxeboot/config/boot.ipxe
 	echo "set server_ip	$2">>/pxeboot/config/boot.ipxe
 	echo 'set boot_url tftp://${server_ip}/config/boot-${net0/mac:hexhyp}.ipxe'>>/pxeboot/config/boot.ipxe
-	echo "echo Booting from URL ${boot_url}">>/pxeboot/config/boot.ipxe
-	echo "chain ${boot_url}">>/pxeboot/config/boot.ipxe
+	echo 'echo Booting from URL ${boot_url}'>>/pxeboot/config/boot.ipxe
+	echo 'chain ${boot_url}'>>/pxeboot/config/boot.ipxe
 	cat /pxeboot/config/boot.ipxe
 	pause
 	echo "Borrando client boot si existe"
@@ -192,4 +192,4 @@ else
 	echo "Finalizado, pruebe a bootear el equipo cuya MAC Address es $6"
 fi
 	echo ""
-	echo "v 1.17 (Escrito para Ubuntu Server 24.04 con apt)"
+	echo "v 1.18 (Escrito para Ubuntu Server 24.04 con apt)"

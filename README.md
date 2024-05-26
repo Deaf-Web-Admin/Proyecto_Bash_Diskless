@@ -1,6 +1,6 @@
 # Requisitos Previos
-Se necesita tener en el mismo directorio el proyecto de GIT de IPXE
-Se necesita un IMG conteniendo Windows (ToGo)
+Se necesita tener en el mismo directorio el proyecto de GIT de IPXE<br>
+Se necesita un IMG conteniendo Windows (ToGo)(este paso me fue extremadamente dificil)<br>
 # OS de Destino
 Esta escrito para Ubuntu Server 24, lo intente correr en Debian, Deepin y otros
 pero no me corre el dnsmasq, acepto informacion a mi correo
